@@ -1,0 +1,21 @@
+<?php
+
+/* @var $this yii\web\View */
+/* @var $model common\models\User */
+
+$this->title = 'Update User: ' . ' ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Update';
+?>
+<div class="user-update">
+    <div class="box box-info">
+        <div class="box-body">
+
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+
+        </div>
+    </div>
+</div>
