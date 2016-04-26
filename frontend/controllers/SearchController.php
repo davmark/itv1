@@ -15,6 +15,7 @@ use yii\helpers\Html;
 
 class SearchController extends BaseController
 {
+    
 
     /**
      * @return string
