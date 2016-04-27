@@ -15,7 +15,6 @@ use yii\helpers\Html;
 
 class SearchController extends BaseController
 {
-    
 
     /**
      * @return string
@@ -25,18 +24,19 @@ class SearchController extends BaseController
         $page = Yii::$app->request->get('page');
 
         $search_text = Html::encode(str_ireplace('_', ' ', Yii::$app->request->get('search_text')));
-        //if(preg_match('~([,\'"#<>$:;])\\/~', $search_text)) throw new \yii\web\NotFoundHttpException();
+        
         if(Yii::$app->request->post())
         {
             $search_text = strip_tags(Yii::$app->request->post('searchwords'));
+            $search_text = urlencode($search_text);
             if (!empty($search_text))
             {
                 $search_text = str_ireplace(' ', '_',  Html::encode($search_text));
                 $search_uri = Html::encode($search_text);
-                $this->redirect(Helper::lang('search/'.$search_uri));
+                $this->redirect(Helper::lang('search?s='.$search_uri));
             }
         }
-
+        $search_text = Yii::$app->request->get('s');
         $programs = Program::find()->asArray()->with('shows')->all();
         $search = new Search($search_text,$programs,
             array(

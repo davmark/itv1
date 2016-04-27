@@ -8,4 +8,5 @@
 
 return [
     'Translatable String' => '123',
+    'Search' => 'Искать',
 ];

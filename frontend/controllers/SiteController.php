@@ -155,14 +155,19 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
+
         if (!\Yii::$app->user->isGuest) {
             return $this->redirect(Helper::lang());
+
         }
 
         $model = new LoginForm();
+        echo $model->username;
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack(Helper::lang());
         } else {
+
             return $this->render('login', [
                 'model' => $model,
             ]);

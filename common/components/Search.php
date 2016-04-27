@@ -10,8 +10,8 @@ use yii\bootstrap\Html;
  * Time: 12:08
  */
 
+//search bՖԴԳԴՖDDDD sssdfgsdgsg
 class Search {
-
     /**
      * Элементы в которых надо осуществить поиск
      * @var array
@@ -150,8 +150,10 @@ class Search {
 
             foreach($this->words as $word){
                 foreach($this->keywords as $field => $value){
+                    $s_word = strip_tags($word);
+                    $s_word = urlencode($s_word);
+                    $weight += (double)preg_match_all('/('.$s_word.')/ius',$this->string_clean($item[$field]),$out) * $value;
 
-                    $weight += (double)preg_match_all('/('.strip_tags($word).')/ius',$this->string_clean($item[$field]),$out) * $value;
                 }
             }
             $this->items[$key]['weight'] = $weight;//echo $field.'-'.$weight.' '.$this->items[$key]['title'].'<br />';
